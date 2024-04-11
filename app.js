@@ -2,6 +2,7 @@ const cont = document.querySelector(".cont");
 const circle = document.querySelectorAll(".circle");
 const nextBtn = document.getElementById("next");
 const prevBtn = document.getElementById("prev");
+const progress = document.querySelector(".progress");
 
 nextBtn.addEventListener("click", () => stepHandler("next"));
 prevBtn.addEventListener("click", () => stepHandler("prev"));
@@ -23,5 +24,14 @@ function stepHandler(step) {
     nextBtn.removeAttribute("disabled");
   }
 
-  console.log(currentIndex);
+  circle.forEach((c)=>{
+    c.classList.remove("active");
+  })
+
+ progress.style.width = (currentIndex-1)*(100/(circle.length-1))+"%";
+
+  for( let i=1; i<= currentIndex; i++){
+    circle[i-1].classList.add("active");
+  }
+
 }
